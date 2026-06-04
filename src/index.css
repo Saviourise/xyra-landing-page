@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Xyra CRM — Landing page design tokens
+   Xyra CRM - Landing page design tokens
    Theme pulled from the Xyra CRM dashboard. Solid colors only (no gradients).
    ────────────────────────────────────────────────────────────────────────── */
 @theme {
@@ -14,11 +14,11 @@
   --font-ui: "Space Grotesk", "Inter", system-ui, sans-serif;
 
   /* Brand */
-  --color-brand: #7c3aed; /* violet — primary action (dashboard --primary-hover) */
+  --color-brand: #7c3aed; /* violet - primary action (dashboard --primary-hover) */
   --color-brand-strong: #6d28d9;
   --color-brand-soft: #f5f3ff; /* very light violet wash for tints */
 
-  /* Ink / text — deep charcoal-navy */
+  /* Ink / text - deep charcoal-navy */
   --color-ink: #111827; /* headings */
   --color-ink-2: #374151; /* body */
   --color-ink-3: #6b7280; /* muted / secondary */

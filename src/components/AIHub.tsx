@@ -4,7 +4,7 @@ import { Container, Reveal, Eyebrow } from "./primitives";
 const ITEMS = [
   {
     kicker: "AI Video & Social",
-    title: "Create short-form video from a script — then auto-post it.",
+    title: "Create short-form video from a script - then auto-post it.",
     desc: "Turn a few lines of text into ready-to-publish vertical and horizontal video with voiceover, then schedule to LinkedIn, Meta, X and TikTok at peak times.",
   },
   {
@@ -15,7 +15,7 @@ const ITEMS = [
   {
     kicker: "Predictive Lead Scoring",
     title: "Rank every lead 0–100 and know the next best action.",
-    desc: "Xyra analyzes historical conversion behavior to score each contact and surface the single best next step — so your team always works the deals most likely to close.",
+    desc: "Xyra analyzes historical conversion behavior to score each contact and surface the single best next step - so your team always works the deals most likely to close.",
   },
 ];
 
@@ -29,7 +29,7 @@ export default function AIHub() {
 
         <Reveal delay={60}>
           <h2 className="mt-8 max-w-2xl text-[2.4rem] font-semibold leading-[1.08] tracking-[-0.02em] text-ink sm:text-[3rem]">
-            Beyond email — a complete AI workforce.
+            Beyond email - a complete AI workforce.
           </h2>
         </Reveal>
 

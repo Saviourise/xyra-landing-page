@@ -18,25 +18,25 @@ export default function Footer() {
             </h2>
             <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
               <a
-                href="tel:+2348000000000"
-                className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
+                href="tel:+2348135503632"
+                className="flex items-center underline gap-3 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
                   <Phone size={15} />
                 </span>
                 <span className="text-[15px] underline-offset-4 hover:underline">
-                  +234 800 000 0000
+                  Call us
                 </span>
               </a>
               <a
-                href="mailto:hello@xyra-crm.com"
-                className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
+                href="mailto:contact@teknesisbrand.com"
+                className="flex items-center underline gap-3 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
                   <Mail size={15} />
                 </span>
                 <span className="text-[15px] underline-offset-4 hover:underline">
-                  hello@xyra-crm.com
+                  Send a mail
                 </span>
               </a>
             </div>
@@ -86,7 +86,7 @@ export default function Footer() {
               >
                 Get in touch
               </Button>
-              <div className="flex items-center gap-5 text-white/55">
+              {/* <div className="flex items-center gap-5 text-white/55">
                 <a href="#" aria-label="Instagram" className="hover:text-white">
                   <Instagram size={18} />
                 </a>
@@ -96,7 +96,7 @@ export default function Footer() {
                 <a href="#" aria-label="X" className="hover:text-white">
                   <Twitter size={18} />
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
 

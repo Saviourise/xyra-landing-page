@@ -4,7 +4,7 @@ import { Container, Reveal, Eyebrow, Button } from "./primitives";
 const CARDS = [
   {
     title: "AI Lead Generation",
-    desc: "Describe your ideal customer in plain English. Xyra sources, verifies, and loads a ready-to-work prospect list — no filters, no spreadsheets.",
+    desc: "Describe your ideal customer in plain English. Xyra sources, verifies, and loads a ready-to-work prospect list - no filters, no spreadsheets.",
     subLabel: "Outreach services",
     items: [
       "Natural-language lead sourcing",
@@ -15,7 +15,7 @@ const CARDS = [
   },
   {
     title: "AI Marketing Hub",
-    desc: "A premium AI workforce for your whole funnel — generate content and video, automate social, and let AI score every lead and place every call.",
+    desc: "A premium AI workforce for your whole funnel - generate content and video, automate social, and let AI score every lead and place every call.",
     subLabel: "Premium services",
     items: [
       "AI video & social content",

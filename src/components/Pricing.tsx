@@ -13,7 +13,7 @@ const FREE = [
 const PREMIUM = [
   "Everything in Free, plus:",
   "AI lead generation in natural language",
-  "Cold outreach — up to 2,000 emails / campaign",
+  "Cold outreach - up to 2,000 emails / campaign",
   "Automated multi-step follow-ups",
   "AI Marketing Hub: video, social & content",
   "Predictive lead scoring & next best action",
@@ -130,7 +130,7 @@ export default function Pricing() {
             >
               <p className="text-sm text-ink-3">
                 <b className="text-ink">Pay-per-use AI credits</b> available for AI
-                Video Generation and Voice Agents — only pay for what you consume.
+                Video Generation and Voice Agents - only pay for what you consume.
               </p>
               <a
                 href="https://xyra-crm.teknesisbrand.com/signup"

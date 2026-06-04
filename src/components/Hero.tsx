@@ -25,7 +25,7 @@ export default function Hero() {
 
             <p className="mt-8 max-w-md text-[17px] leading-relaxed text-white/65">
               The AI-powered CRM that finds leads in plain English, verifies
-              every email, and automates personalized cold outreach — all in one
+              every email, and automates personalized cold outreach - all in one
               professional dashboard.
             </p>
 

@@ -1,14 +1,16 @@
 import { Container } from "./primitives";
 
 const LOGOS = [
-  "Apollo.io",
-  "Hunter.io",
-  "OpenAI",
+  "Fireflies.ai",
+  "Otter.ai",
+  "Claude.ai",
   "Google Workspace",
   "Microsoft 365",
   "WhatsApp",
-  "Zapier",
-  "Stripe",
+  "Gmail",
+  "Outlook",
+  "Google meet",
+  "OpenAI",
 ];
 
 export default function LogoStrip() {

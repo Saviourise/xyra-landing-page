@@ -26,7 +26,7 @@ export default function FinalCTA() {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-white/65">
-              Join 500+ sales teams scaling their outreach with Xyra CRM — and
+              Join 500+ sales teams scaling their outreach with Xyra CRM - and
               spend your time closing, not prospecting.
             </p>
           </Reveal>

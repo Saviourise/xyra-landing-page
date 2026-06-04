@@ -5,7 +5,7 @@ const CASES = [
   {
     img: "/images/case-analytics.jpg",
     title: "Outbound at scale",
-    desc: "How a B2B sales team replaced manual prospecting with AI sourcing — and verified 10,000 leads in a week.",
+    desc: "How a B2B sales team replaced manual prospecting with AI sourcing - and verified 10,000 leads in a week.",
   },
   {
     img: "/images/case-growth.jpg",
@@ -25,8 +25,7 @@ export default function CaseStudies() {
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {CASES.map((c, i) => (
             <Reveal key={c.title} delay={i * 100}>
-              <a
-                href="#"
+              <p
                 className="group relative block aspect-[4/3] overflow-hidden rounded-[3px]"
               >
                 <img
@@ -42,15 +41,15 @@ export default function CaseStudies() {
                   <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-white/75">
                     {c.desc}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
+                  {/* <span className="mt-6 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.18em] text-white">
                     View case study
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-1"
                     />
-                  </span>
+                  </span> */}
                 </div>
-              </a>
+              </p>
             </Reveal>
           ))}
         </div>
