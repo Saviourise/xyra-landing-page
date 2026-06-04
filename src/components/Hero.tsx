@@ -3,9 +3,9 @@ import { Container, Button } from "./primitives";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative bg-night">
-      {/* Right-half photograph (desktop), bleeds to the screen edge */}
-      <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
+    <section id="top" className="relative overflow-hidden bg-night">
+      {/* Photograph: full bleed on small screens, right half on desktop */}
+      <div className="absolute inset-0 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-1/2">
         <img
           src="/images/hero.jpg"
           alt="Business professionals closing a deal"
@@ -13,7 +13,13 @@ export default function Hero() {
         />
       </div>
 
-      <Container className="relative">
+      {/* Small screens: photo on top, long fade into solid night at the bottom */}
+      <div
+        className="absolute inset-0 bg-linear-to-b from-transparent from-0% via-night/30 via-38% via-night/65 via-58% to-night to-100% lg:hidden"
+        aria-hidden
+      />
+
+      <Container className="relative z-10">
         <div className="grid lg:grid-cols-2">
           {/* Left: text, aligned to the shared container gutter */}
           <div className="flex min-h-screen flex-col justify-center pt-32 pb-16 lg:pr-12 lg:pt-40 lg:pb-24">
@@ -55,15 +61,6 @@ export default function Hero() {
           <div className="hidden lg:block" aria-hidden />
         </div>
       </Container>
-
-      {/* Mobile photograph below the text */}
-      <div className="lg:hidden">
-        <img
-          src="/images/hero.jpg"
-          alt="Business professionals closing a deal"
-          className="h-[58vh] w-full object-cover"
-        />
-      </div>
     </section>
   );
 }
