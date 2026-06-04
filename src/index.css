@@ -51,7 +51,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-synthesis: none;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {

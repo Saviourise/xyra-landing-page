@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useAppLocation } from "./lib/navigation";
@@ -47,10 +47,20 @@ function resolvePage(pathname: string) {
 
 export default function App() {
   const location = useAppLocation();
+  const previousPathname = useRef(location.pathname);
 
   useEffect(() => {
     if (location.hash && scrollToHash(location.hash)) return;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    if (location.pathname !== previousPathname.current) {
+      const root = document.documentElement;
+      const previousBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, 0);
+      root.style.scrollBehavior = previousBehavior;
+      previousPathname.current = location.pathname;
+      return;
+    }
+    previousPathname.current = location.pathname;
   }, [location.pathname, location.hash]);
 
   return (
