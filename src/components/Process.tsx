@@ -1,9 +1,4 @@
-import { Fragment, useEffect, useRef } from "react";
-import {
-  Parallax,
-  ParallaxLayer,
-  type IParallax,
-} from "@react-spring/parallax";
+import { useEffect, useRef, useState } from "react";
 import { Check, ArrowDown } from "lucide-react";
 import { Container, Reveal, Eyebrow } from "./primitives";
 
@@ -46,7 +41,97 @@ const STEPS: Step[] = [
   },
 ];
 
-/* White overlay text shown on top of the full-bleed step image. */
+const CROSSFADE = 0.62;
+const LAST_INDEX = STEPS.length - 1;
+/** One unit per step (0→4 for 4 steps) so the last step gets its own scroll band before exit */
+const STEP_FLOAT_MAX = STEPS.length;
+const LAST_STEP_HOLD_PAGES = 0.1;
+const EXIT_PAGES = 1;
+/** Slight extra hold on the last step, then one viewport for the slide-out to the next section. */
+const SCROLL_PAGES = STEP_FLOAT_MAX + LAST_STEP_HOLD_PAGES + EXIT_PAGES;
+
+const easeInOut = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+/**
+ * Overlapping ramps so adjacent steps are never both at opacity 0.
+ */
+function stepOpacity(stepFloat: number, index: number): number {
+  if (index === 0) {
+    if (stepFloat >= 1 + CROSSFADE / 2) return 0;
+    if (stepFloat <= 1 - CROSSFADE / 2) return 1;
+    const t = (stepFloat - (1 - CROSSFADE / 2)) / CROSSFADE;
+    return 1 - easeInOut(t);
+  }
+
+  if (index === LAST_INDEX) {
+    if (stepFloat <= index - CROSSFADE / 2) return 0;
+    if (stepFloat >= index + CROSSFADE / 2) return 1;
+    const t = (stepFloat - (index - CROSSFADE / 2)) / CROSSFADE;
+    return easeInOut(t);
+  }
+
+  const center = index + 0.5;
+  const halfWindow = 0.5 + CROSSFADE / 2;
+  const dist = Math.abs(stepFloat - center);
+  if (dist >= halfWindow) return 0;
+
+  const holdRadius = 0.5 - CROSSFADE / 2;
+  if (holdRadius > 0 && dist <= holdRadius) return 1;
+
+  const fade = (dist - holdRadius) / (halfWindow - holdRadius);
+  return easeInOut(1 - fade);
+}
+
+const PARALLAX_CAP = 8;
+
+function parallaxY(stepFloat: number, index: number, speed: number): number {
+  const local = stepFloat - (index + 0.5);
+  const half = 0.5 + CROSSFADE / 2;
+  if (Math.abs(local) > half) return 0;
+  const raw = local * speed * 1.4;
+  return Math.max(-PARALLAX_CAP, Math.min(PARALLAX_CAP, raw));
+}
+
+function stepScale(stepFloat: number, index: number): number {
+  const opacity = stepOpacity(stepFloat, index);
+  return 1.08 + (1 - opacity) * 0.04;
+}
+
+type ScrollScene = {
+  stepFloat: number;
+  /** Slides with section top on enter, section bottom on exit (mirror behaviour) */
+  panelTop: number;
+  panelOpacity: number;
+  visible: boolean;
+};
+
+function measureScene(section: HTMLElement): ScrollScene {
+  const rect = section.getBoundingClientRect();
+  const vh = window.innerHeight;
+
+  if (rect.bottom <= 0 || rect.top >= vh) {
+    return { stepFloat: 0, panelTop: 0, panelOpacity: 0, visible: false };
+  }
+
+  if (rect.top > 0) {
+    return { stepFloat: 0, panelTop: rect.top, panelOpacity: 1, visible: true };
+  }
+
+  const scrolled = Math.max(-rect.top, 0);
+  /* Last viewport is slide-out only; parallax 0→4 finishes one vh earlier */
+  const parallaxScroll = Math.max(STEP_FLOAT_MAX * vh, 1);
+  const stepFloat = Math.min(
+    (scrolled / parallaxScroll) * STEP_FLOAT_MAX,
+    STEP_FLOAT_MAX,
+  );
+  const panelTop = Math.min(0, rect.bottom - vh);
+  const exitProgress = Math.min(Math.max(-panelTop / vh, 0), 1);
+  const panelOpacity = 1 - easeInOut(exitProgress);
+
+  return { stepFloat, panelTop, panelOpacity, visible: true };
+}
+
 function StepContent({ step }: { step: Step }) {
   return (
     <div className="max-w-lg">
@@ -76,101 +161,170 @@ function StepContent({ step }: { step: Step }) {
 
 export default function Process() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useRef<IParallax>(null);
+  const [scene, setScene] = useState<ScrollScene>({
+    stepFloat: 0,
+    panelTop: 0,
+    panelOpacity: 0,
+    visible: false,
+  });
+  const [reducedMotion, setReducedMotion] = useState(false);
 
-  /* Drive the parallax's internal scroll from the WINDOW scroll, so the effect
-     scrubs naturally as you scroll the whole page (the section is pinned via
-     position: sticky while its tall wrapper scrolls past). */
   useEffect(() => {
-    const onScroll = () => {
-      const section = sectionRef.current;
-      const p = parallaxRef.current;
-      const container = p?.container.current as HTMLElement | undefined;
-      if (!section || !container) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = () => setReducedMotion(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
-      const range = section.offsetHeight - window.innerHeight;
-      const scrolled = Math.min(
-        Math.max(-section.getBoundingClientRect().top, 0),
-        range,
-      );
-      const progress = range > 0 ? scrolled / range : 0;
-      container.scrollTop =
-        progress * (container.scrollHeight - container.clientHeight);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const section = sectionRef.current;
+      if (!section) return;
+      setScene(measureScene(section));
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    onScroll();
+    update();
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
+  const { stepFloat, panelTop, panelOpacity, visible } = scene;
+  const activeIndex = Math.min(
+    Math.max(Math.floor(stepFloat + 0.2), 0),
+    LAST_INDEX,
+  );
+  const isEntering = panelTop > 0;
+  const isExiting = panelTop < 0;
+  const showScrollCue =
+    stepFloat < 0.35 && panelTop === 0 && !isEntering && !isExiting;
+
   return (
-    <section id="process" className="bg-night">
-      {/* ── Desktop: window-scroll-driven, pinned react-spring parallax ── */}
+    <section id="process" className="relative bg-night">
+      {/* Tall track — desktop only */}
       <div
         ref={sectionRef}
-        className="relative hidden lg:block"
-        style={{ height: `${STEPS.length * 100}vh` }}
+        className="relative hidden bg-night lg:block"
+        style={{ height: `${SCROLL_PAGES * 100}vh` }}
+        aria-hidden
+      />
+
+      {/* Panel mirrors section top on enter, section bottom on exit */}
+      <div
+        className="pointer-events-none fixed inset-x-0 z-20 hidden h-screen overflow-hidden bg-night lg:block"
+        style={{
+          top: panelTop,
+          opacity: panelOpacity,
+          visibility: visible ? "visible" : "hidden",
+        }}
+        aria-hidden={!visible}
       >
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <Parallax pages={STEPS.length} ref={parallaxRef} className="parallax-pinned">
-            {STEPS.map((step, i) => {
-              const flip = i % 2 === 1;
-              return (
-                <Fragment key={step.n}>
-                  {/* Full-bleed image, fills the whole section */}
-                  <ParallaxLayer offset={i} speed={0}>
-                    <img
-                      src={step.img}
-                      alt={step.title}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-night/65" aria-hidden />
-                  </ParallaxLayer>
+        {STEPS.map((step, i) => {
+          const flip = i % 2 === 1;
+          const opacity = reducedMotion
+            ? i === activeIndex
+              ? 1
+              : 0
+            : stepOpacity(stepFloat, i);
 
-                  {/* Giant watermark number — drifts (deep layer) */}
-                  <ParallaxLayer offset={i} speed={0.5} className="pointer-events-none">
-                    <Container className="flex h-full items-center">
-                      <span
-                        className={`font-display select-none text-[26vw] font-bold leading-none text-white/[0.06] ${
-                          flip ? "ml-auto" : ""
-                        }`}
-                      >
-                        {step.n}
-                      </span>
-                    </Container>
-                  </ParallaxLayer>
+          const imgY = parallaxY(stepFloat, i, 12);
+          const numY = parallaxY(stepFloat, i, 6);
+          const textY = parallaxY(stepFloat, i, 20);
+          const scale = stepScale(stepFloat, i);
 
-                  {/* Overlay text — drifts faster (foreground parallax) */}
-                  <ParallaxLayer offset={i} speed={0.28}>
-                    <Container
-                      className={`flex h-full items-center ${
-                        flip ? "justify-end text-left" : ""
-                      }`}
-                    >
-                      <StepContent step={step} />
-                    </Container>
-                  </ParallaxLayer>
-                </Fragment>
-              );
-            })}
-
-            {/* Scroll cue on the first page */}
-            <ParallaxLayer offset={0} speed={0.1} className="pointer-events-none">
-              <div className="font-ui absolute bottom-10 left-1/2 flex -translate-x-1/2 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">
-                Scroll to explore
-                <ArrowDown size={13} className="animate-bounce" />
+          return (
+            <div
+              key={step.n}
+              className="absolute inset-0"
+              style={{
+                opacity,
+                zIndex: Math.round(opacity * 20) + i,
+                willChange: "opacity, transform",
+                pointerEvents: opacity > 0.5 ? "auto" : "none",
+              }}
+              aria-hidden={opacity < 0.5}
+            >
+              <div className="absolute inset-0 overflow-hidden bg-night">
+                <div
+                  className="absolute left-0 w-full h-[130%] top-[-15%]"
+                  style={{
+                    transform: `translate3d(0, ${imgY}vh, 0) scale(${scale})`,
+                  }}
+                >
+                  <img
+                    src={step.img}
+                    alt={i === activeIndex ? step.title : ""}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-night/65" />
               </div>
-            </ParallaxLayer>
-          </Parallax>
+
+              <div
+                className="absolute inset-0"
+                style={{ transform: `translate3d(0, ${numY}vh, 0)` }}
+              >
+                <Container className="flex h-full items-center">
+                  <span
+                    className={`font-display select-none text-[26vw] font-bold leading-none text-white/6 ${flip ? "ml-auto" : ""
+                      }`}
+                  >
+                    {step.n}
+                  </span>
+                </Container>
+              </div>
+
+              <div
+                className="absolute inset-0"
+                style={{ transform: `translate3d(0, ${textY}vh, 0)` }}
+              >
+                <Container
+                  className={`flex h-full items-center ${flip ? "justify-end text-left" : ""
+                    }`}
+                >
+                  <StepContent step={step} />
+                </Container>
+              </div>
+            </div>
+          );
+        })}
+
+        {showScrollCue && !reducedMotion && (
+          <div className="font-ui pointer-events-none absolute bottom-10 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">
+            Scroll to explore
+            <ArrowDown size={13} className="animate-bounce" />
+          </div>
+        )}
+
+        <div
+          className="pointer-events-none absolute right-8 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-3 xl:flex"
+          aria-hidden
+        >
+          {STEPS.map((step, i) => (
+            <span
+              key={step.n}
+              className={`h-8 w-px origin-center transition-[transform,background-color] duration-200 ${i === activeIndex
+                ? "scale-y-100 bg-white/80"
+                : "scale-y-[0.35] bg-white/25"
+                }`}
+            />
+          ))}
         </div>
       </div>
 
       {/* ── Mobile: stacked full-bleed step cards ── */}
-      <div className="lg:hidden">
+      <div className="bg-night lg:hidden">
         <Container>
           <div className="pt-20 pb-8">
             <Reveal>

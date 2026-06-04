@@ -12,7 +12,7 @@ export default function Footer() {
       {/* Connect band */}
       <section className="bg-night">
         <Container>
-          <div className="flex flex-col gap-10 border-b border-night-line py-20 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-10 py-20 lg:flex-row lg:items-center lg:justify-between">
             <h2 className="text-[2.6rem] font-semibold tracking-[-0.02em] text-white sm:text-[3.4rem]">
               Connect with us
             </h2>
