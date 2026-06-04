@@ -5,6 +5,7 @@ import Services from "../components/Services";
 import Process from "../components/Process";
 import CaseStudies from "../components/CaseStudies";
 import AIHub from "../components/AIHub";
+import FAQSection from "../components/FAQSection";
 import Pricing from "../components/Pricing";
 import FinalCTA from "../components/FinalCTA";
 
@@ -42,6 +43,7 @@ export default function HomePage() {
       <CaseStudies />
       <AIHub />
       <Pricing />
+      <FAQSection />
       <FinalCTA />
     </main>
   );

@@ -227,6 +227,40 @@ export const FOOTER_LINKS = [
   { label: "Features", href: routes.features },
   { label: "Pricing", href: routes.pricing },
   { label: "Process", href: routes.process },
+  { label: "FAQ", href: routes.faq },
   { label: "Security", href: routes.security },
   { label: "Case studies", href: routes.caseStudies },
+];
+
+export const FAQS = [
+  {
+    question: "How quickly can we get started?",
+    answer:
+      "Most teams can start with the free plan immediately. If you want a more tailored rollout, we can shape onboarding around your sales motion and team size.",
+  },
+  {
+    question: "Do we need to change our current sales process?",
+    answer:
+      "No. Xyra is designed to fit the workflow you already run and remove the manual steps around sourcing, verification, personalization, and follow-up.",
+  },
+  {
+    question: "Can we use Xyra for outbound and pipeline tracking together?",
+    answer:
+      "Yes. The platform combines CRM, outreach, and analytics so teams can work from one system instead of stitching multiple tools together.",
+  },
+  {
+    question: "How does email verification work?",
+    answer:
+      "Prospects are verified before campaigns launch, which helps keep bounce rates down and protects sender reputation.",
+  },
+  {
+    question: "Is our data protected?",
+    answer:
+      "The platform is built with encryption, permissions, and audit visibility in mind. Security and access control are core parts of the product, not add-ons.",
+  },
+  {
+    question: "Can we talk to someone before signing up?",
+    answer:
+      "Yes. The contact and demo pages are there for teams that want to understand fit, pricing, or rollout details before they commit.",
+  },
 ];

@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import FeaturesPage from "./pages/FeaturesPage";
 import ProcessPage from "./pages/ProcessPage";
 import PricingPage from "./pages/PricingPage";
+import FAQPage from "./pages/FAQPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import ContactPage from "./pages/ContactPage";
 import DemoPage from "./pages/DemoPage";
@@ -31,6 +32,8 @@ function resolvePage(pathname: string) {
       return <ProcessPage />;
     case routes.pricing:
       return <PricingPage />;
+    case routes.faq:
+      return <FAQPage />;
     case routes.caseStudies:
       return <CaseStudiesPage />;
     case routes.contact:

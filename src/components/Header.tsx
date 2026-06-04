@@ -8,6 +8,7 @@ import { Container, Button } from "./primitives";
 const NAV = [
   { label: "Process", href: routes.process },
   { label: "Pricing", href: routes.pricing },
+  { label: "FAQ", href: routes.faq },
   { label: "Contact", href: routes.contact },
 ];
 

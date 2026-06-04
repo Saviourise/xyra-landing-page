@@ -3,6 +3,7 @@ export const routes = {
   features: "/features",
   process: "/process",
   pricing: "/pricing",
+  faq: "/faq",
   caseStudies: "/case-studies",
   contact: "/contact",
   demo: "/book-demo",
