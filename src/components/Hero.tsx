@@ -15,7 +15,7 @@ export default function Hero() {
 
       {/* Small screens: photo on top, long fade into solid night at the bottom */}
       <div
-        className="absolute inset-0 bg-linear-to-b from-transparent from-0% via-night/30 via-38% via-night/65 via-58% to-night to-100% lg:hidden"
+        className="absolute inset-0 bg-linear-to-b from-transparent from-0% via-night/30 via-38% to-night to-100% lg:hidden"
         aria-hidden
       />
 
@@ -23,7 +23,7 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2">
           {/* Left: text, aligned to the shared container gutter */}
           <div className="flex min-h-screen flex-col justify-center pt-32 pb-16 lg:pr-12 lg:pt-40 lg:pb-24">
-            <h1 className="text-[2.9rem] font-semibold leading-[1.04] tracking-[-0.025em] text-white sm:text-[3.6rem] lg:text-[4.1rem]">
+            <h1 className="text-[2.9rem] font-semibold leading-[1.04] tracking-tight text-white sm:text-[3.6rem] lg:text-[4.1rem]">
               Scale your outreach.
               <br />
               Zero manual effort.

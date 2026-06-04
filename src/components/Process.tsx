@@ -73,11 +73,11 @@ export default function Process() {
                 <div className={flip ? "lg:order-2" : ""}>
                   <div className="relative overflow-hidden rounded-[4px]">
                     <Parallax speed={i % 2 === 0 ? -8 : -4} className="will-change-transform">
-                      <div className="relative aspect-[4/3] w-full">
+                      <div className="relative aspect-4/3 w-full">
                         <img
                           src={step.img}
                           alt={step.title}
-                          className="absolute inset-0 h-[112%] w-full -translate-y-[6%] object-cover"
+                          className="absolute inset-0 h-[112%] w-full translate-y-[-6%] object-cover"
                         />
                       </div>
                     </Parallax>

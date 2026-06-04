@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Container, Reveal, Eyebrow } from "./primitives";
 
 const CASES = [
@@ -26,7 +25,7 @@ export default function CaseStudies() {
           {CASES.map((c, i) => (
             <Reveal key={c.title} delay={i * 100}>
               <p
-                className="group relative block aspect-[4/3] overflow-hidden rounded-[3px]"
+                className="group min-h-[300px] max-w-full relative block sm:aspect-4/3 overflow-hidden rounded-[3px]"
               >
                 <img
                   src={c.img}

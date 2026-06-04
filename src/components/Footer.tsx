@@ -1,4 +1,4 @@
-import { Phone, Mail, Instagram, Facebook, Twitter } from "lucide-react";
+import { Phone, Mail, } from "lucide-react";
 import { Container, Button } from "./primitives";
 
 const PAGES = [
