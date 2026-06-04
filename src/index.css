@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:ital,wght@0,300..700;1,300..600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Xyra CRM — Landing page design tokens
+   Theme pulled from the Xyra CRM dashboard. Solid colors only (no gradients).
+   ────────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Three-family type system:
+     display → headings/titles (bold)   body → normal text/subtitles   ui → buttons & labels */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --font-ui: "Space Grotesk", "Inter", system-ui, sans-serif;
+
+  /* Brand */
+  --color-brand: #7c3aed; /* violet — primary action (dashboard --primary-hover) */
+  --color-brand-strong: #6d28d9;
+  --color-brand-soft: #f5f3ff; /* very light violet wash for tints */
+
+  /* Ink / text — deep charcoal-navy */
+  --color-ink: #111827; /* headings */
+  --color-ink-2: #374151; /* body */
+  --color-ink-3: #6b7280; /* muted / secondary */
+
+  /* Surfaces */
+  --color-bg: #ffffff;
+  --color-bg-soft: #f8fafc; /* light slate section bg */
+  --color-bg-elevated: #f3f4f6;
+  --color-line: #e5e7eb; /* soft border */
+  --color-line-strong: #d1d5db;
+
+  /* Dark band (footer / final cta) */
+  --color-night: #0b0f14;
+  --color-night-2: #121821;
+  --color-night-line: #1f2a37;
+
+  /* Status accents (from dashboard) */
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+
+  --radius-card: 8px;
+  --radius-btn: 6px;
+}
+
+:root {
+  font-family: var(--font-body);
+  color: var(--color-ink-2);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-ink-2);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+/* Thin, professional scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c7cdd6;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aab2be;
+}
+
+/* Reveal-on-scroll */
+@keyframes xy-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: xy-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+  }
+  :root {
+    scroll-behavior: auto;
+  }
+}
+
+/* Headings use the display family (Sora) by default */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
