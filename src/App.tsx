@@ -1,4 +1,3 @@
-import { ParallaxProvider } from "react-scroll-parallax";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import LogoStrip from "./components/LogoStrip";
@@ -13,9 +12,8 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <ParallaxProvider>
-      <div className="min-h-screen bg-white">
-        <Header />
+    <div className="min-h-screen bg-white">
+      <Header />
         <main>
           <Hero />
           <LogoStrip />
@@ -49,9 +47,8 @@ export default function App() {
           <AIHub />
           <Pricing />
           <FinalCTA />
-        </main>
-        <Footer />
-      </div>
-    </ParallaxProvider>
+      </main>
+      <Footer />
+    </div>
   );
 }

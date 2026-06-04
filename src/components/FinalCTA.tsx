@@ -36,14 +36,14 @@ export default function FinalCTA() {
                 href="https://xyra-crm.teknesisbrand.com/signup"
                 variant="onDark"
               >
-                Get started for free
+                Start your 1-month free trial
               </Button>
               <Button href="#pricing" variant="onDarkOutline">
                 View pricing
               </Button>
             </div>
             <p className="mt-6 text-sm text-white/45">
-              No credit card required · Free plan available forever
+              Premium free for 30 days · No credit card required · Cancel anytime
             </p>
           </Reveal>
         </div>

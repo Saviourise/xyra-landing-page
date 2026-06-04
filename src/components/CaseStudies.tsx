@@ -24,7 +24,7 @@ export default function CaseStudies() {
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {CASES.map((c, i) => (
             <Reveal key={c.title} delay={i * 100}>
-              <p
+              <div
                 className="group min-h-[300px] max-w-full relative block sm:aspect-4/3 overflow-hidden rounded-[3px]"
               >
                 <img
@@ -48,7 +48,7 @@ export default function CaseStudies() {
                     />
                   </span> */}
                 </div>
-              </p>
+              </div>
             </Reveal>
           ))}
         </div>

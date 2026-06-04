@@ -91,13 +91,16 @@ export default function Pricing() {
                   </span>
                   <span className="text-white/55">/ month</span>
                 </div>
+                <p className="font-ui mt-3 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[12px] font-medium text-white/85">
+                  ✦ First month free — no card required
+                </p>
                 <Button
                   href="https://xyra-crm.teknesisbrand.com/signup"
                   variant="onDark"
                   full
-                  className="mt-8"
+                  className="mt-6"
                 >
-                  Upgrade to Premium
+                  Start 1-month free trial
                 </Button>
                 <ul className="mt-8 space-y-3.5">
                   {PREMIUM.map((f, i) => (

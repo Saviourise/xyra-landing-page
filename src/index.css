@@ -106,6 +106,19 @@ body {
   }
 }
 
+/* The Process parallax is driven by the WINDOW scroll (see Process.tsx), so its
+   own scroll container must not capture the wheel. overflow:hidden still allows
+   scrollTop to be set programmatically and fire scroll events that move layers. */
+.parallax-pinned {
+  overflow: hidden !important;
+  scrollbar-width: none;
+}
+.parallax-pinned::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 /* Headings use the display family (Sora) by default */
 @layer base {
   h1,

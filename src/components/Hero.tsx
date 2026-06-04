@@ -1,16 +1,13 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Sparkles } from "lucide-react";
 import { Container, Button } from "./primitives";
+import HeroCarousel from "./HeroCarousel";
 
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-night">
-      {/* Photograph: full bleed on small screens, right half on desktop */}
+      {/* Photo carousel: full bleed on small screens, right half on desktop */}
       <div className="absolute inset-0 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-1/2">
-        <img
-          src="/images/hero.jpg"
-          alt="Business professionals closing a deal"
-          className="h-full w-full object-cover"
-        />
+        <HeroCarousel />
       </div>
 
       {/* Small screens: photo on top, long fade into solid night at the bottom */}
@@ -23,6 +20,11 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2">
           {/* Left: text, aligned to the shared container gutter */}
           <div className="flex min-h-screen flex-col justify-center pt-32 pb-16 lg:pr-12 lg:pt-40 lg:pb-24">
+            <span className="font-ui mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[12px] font-medium tracking-wide text-white/85 backdrop-blur-sm">
+              <Sparkles size={14} className="text-white" />
+              1-month free trial on Premium — no card required
+            </span>
+
             <h1 className="text-[2.9rem] font-semibold leading-[1.04] tracking-tight text-white sm:text-[3.6rem] lg:text-[4.1rem]">
               Scale your outreach.
               <br />
@@ -40,7 +42,7 @@ export default function Hero() {
                 href="https://xyra-crm.teknesisbrand.com/signup"
                 variant="onDark"
               >
-                Start your AI campaign
+                Start 1-month free trial
               </Button>
               <Button href="#process" variant="onDarkOutline">
                 Watch demo
