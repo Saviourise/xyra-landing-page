@@ -1,0 +1,12 @@
+export const routes = {
+  home: "/",
+  features: "/features",
+  process: "/process",
+  pricing: "/pricing",
+  caseStudies: "/case-studies",
+  contact: "/contact",
+  demo: "/book-demo",
+  security: "/security",
+  homeSection: (id: string) => `/#${id}`,
+  featuresSection: (id: string) => `/features#${id}`,
+} as const;

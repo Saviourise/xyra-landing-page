@@ -1,9 +1,9 @@
+import { routes } from "../lib/routes";
 import { Container, Reveal, Button } from "./primitives";
 
 export default function FinalCTA() {
   return (
     <section className="relative">
-      {/* Full-bleed photo with solid dark scrim */}
       <img
         src="/images/cta-team.jpg"
         alt="A modern sales team at work"
@@ -38,7 +38,7 @@ export default function FinalCTA() {
               >
                 Start your 1-month free trial
               </Button>
-              <Button href="#pricing" variant="onDarkOutline">
+              <Button href={routes.pricing} variant="onDarkOutline">
                 View pricing
               </Button>
             </div>

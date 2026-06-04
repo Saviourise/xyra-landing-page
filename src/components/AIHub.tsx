@@ -1,4 +1,6 @@
 import { ArrowRight } from "lucide-react";
+import { AppLink } from "../lib/navigation";
+import { routes } from "../lib/routes";
 import { Container, Reveal, Eyebrow } from "./primitives";
 
 const ITEMS = [
@@ -14,7 +16,7 @@ const ITEMS = [
   },
   {
     kicker: "Predictive Lead Scoring",
-    title: "Rank every lead 0–100 and know the next best action.",
+    title: "Rank every lead 0-100 and know the next best action.",
     desc: "Xyra analyzes historical conversion behavior to score each contact and surface the single best next step - so your team always works the deals most likely to close.",
   },
 ];
@@ -46,13 +48,13 @@ export default function AIHub() {
               <p className="mt-4 text-[15px] leading-relaxed text-ink-3">
                 {item.desc}
               </p>
-              <a
-                href="#pricing"
+              <AppLink
+                href={routes.featuresSection("ai-marketing-hub")}
                 className="mt-6 inline-flex items-center gap-2 text-[14px] font-semibold text-ink underline-offset-4 hover:underline"
               >
                 Learn more
                 <ArrowRight size={15} />
-              </a>
+              </AppLink>
             </Reveal>
           ))}
         </div>

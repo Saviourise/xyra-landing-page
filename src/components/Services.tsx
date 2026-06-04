@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { routes } from "../lib/routes";
 import { Container, Reveal, Eyebrow, Button } from "./primitives";
 
 const CARDS = [
@@ -20,7 +21,7 @@ const CARDS = [
     items: [
       "AI video & social content",
       "AI voice agents for follow-ups",
-      "Predictive lead scoring (0–100)",
+      "Predictive lead scoring (0-100)",
       "Auto-scheduling & analytics",
     ],
   },
@@ -66,7 +67,7 @@ export default function Services() {
         </div>
 
         <Reveal delay={120} className="mt-10">
-          <Button href="#process">Read more</Button>
+          <Button href={routes.features}>Read more</Button>
         </Reveal>
       </Container>
     </section>

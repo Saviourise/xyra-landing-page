@@ -1,15 +1,12 @@
-import { Phone, Mail, } from "lucide-react";
-import { Container, Button } from "./primitives";
-
-const PAGES = [
-  ["Home", "Services", "Pricing"],
-  ["Process", "AI Hub", "Case studies"],
-];
+import { Mail, Phone } from "lucide-react";
+import { FOOTER_LINKS } from "../content/site";
+import { AppLink } from "../lib/navigation";
+import { routes } from "../lib/routes";
+import { Button, Container } from "./primitives";
 
 export default function Footer() {
   return (
     <>
-      {/* Connect band */}
       <section className="bg-night">
         <Container>
           <div className="flex flex-col gap-10 py-20 lg:flex-row lg:items-center lg:justify-between">
@@ -19,24 +16,24 @@ export default function Footer() {
             <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
               <a
                 href="tel:+2348135503632"
-                className="flex items-center underline gap-3 text-white/80 transition-colors hover:text-white"
+                className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
                   <Phone size={15} />
                 </span>
-                <span className="text-[15px] underline-offset-4 hover:underline">
-                  Call us
+                <span className="text-[15px] underline underline-offset-4">
+                  Talk to sales
                 </span>
               </a>
               <a
                 href="mailto:contact@teknesisbrand.com"
-                className="flex items-center underline gap-3 text-white/80 transition-colors hover:text-white"
+                className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
                   <Mail size={15} />
                 </span>
-                <span className="text-[15px] underline-offset-4 hover:underline">
-                  Send a mail
+                <span className="text-[15px] underline underline-offset-4">
+                  Email the team
                 </span>
               </a>
             </div>
@@ -44,7 +41,6 @@ export default function Footer() {
         </Container>
       </section>
 
-      {/* Footer */}
       <footer className="bg-night-2">
         <Container>
           <div className="grid gap-12 py-16 lg:grid-cols-[1.5fr_2fr_auto]">
@@ -67,36 +63,22 @@ export default function Footer() {
               </div>
               <span className="mt-2 block h-px w-10 bg-white/25" />
               <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-3">
-                {PAGES.flat().map((link) => (
-                  <a
-                    key={link}
-                    href="#"
+                {FOOTER_LINKS.map((link) => (
+                  <AppLink
+                    key={link.label}
+                    href={link.href}
                     className="text-[15px] text-white/65 transition-colors hover:text-white"
                   >
-                    {link}
-                  </a>
+                    {link.label}
+                  </AppLink>
                 ))}
               </div>
             </div>
 
             <div className="flex flex-col items-start gap-8">
-              <Button
-                href="https://xyra-crm.teknesisbrand.com/signup"
-                variant="onDark"
-              >
+              <Button href={routes.contact} variant="onDark">
                 Get in touch
               </Button>
-              {/* <div className="flex items-center gap-5 text-white/55">
-                <a href="#" aria-label="Instagram" className="hover:text-white">
-                  <Instagram size={18} />
-                </a>
-                <a href="#" aria-label="Facebook" className="hover:text-white">
-                  <Facebook size={18} />
-                </a>
-                <a href="#" aria-label="X" className="hover:text-white">
-                  <Twitter size={18} />
-                </a>
-              </div> */}
             </div>
           </div>
 

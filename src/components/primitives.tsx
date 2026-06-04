@@ -5,6 +5,7 @@ import {
   type ElementType,
   type ReactNode,
 } from "react";
+import { AppLink } from "../lib/navigation";
 
 /* ── Container ─────────────────────────────────────────────────────────────
    Wide editorial column (matches the consulting reference's generous gutters). */
@@ -120,11 +121,11 @@ export function Button({
       "border border-white/25 text-white hover:bg-white hover:text-ink",
   };
   return (
-    <a
+    <AppLink
       href={href}
       className={`${base} ${styles[variant]} ${full ? "w-full" : ""} ${className}`}
     >
       {children}
-    </a>
+    </AppLink>
   );
 }

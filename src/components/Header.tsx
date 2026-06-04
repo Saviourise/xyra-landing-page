@@ -1,72 +1,14 @@
 import { useEffect, useState } from "react";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Users,
-  Building2,
-  UserPlus,
-  Columns3,
-  CheckSquare,
-  Search,
-  MailPlus,
-  ShieldCheck,
-  Repeat2,
-  Clapperboard,
-  PhoneCall,
-  Gauge,
-  BarChart3,
-  Plug,
-  Lock,
-  type LucideIcon,
-} from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import { FEATURE_GROUPS } from "../content/site";
+import { AppLink } from "../lib/navigation";
+import { routes } from "../lib/routes";
 import { Container, Button } from "./primitives";
 
-type FeatureItem = { label: string; icon: LucideIcon; href: string };
-type FeatureGroup = { title: string; items: FeatureItem[] };
-
-const FEATURE_GROUPS: FeatureGroup[] = [
-  {
-    title: "CRM Core",
-    items: [
-      { label: "Contacts", icon: Users, href: "#services" },
-      { label: "Companies", icon: Building2, href: "#services" },
-      { label: "Leads", icon: UserPlus, href: "#services" },
-      { label: "Pipeline", icon: Columns3, href: "#services" },
-      { label: "Tasks", icon: CheckSquare, href: "#services" },
-    ],
-  },
-  {
-    title: "AI Outreach",
-    items: [
-      { label: "AI Lead Generation", icon: Search, href: "#process" },
-      { label: "Cold Email Automation", icon: MailPlus, href: "#process" },
-      { label: "Email Verification", icon: ShieldCheck, href: "#process" },
-      { label: "Follow-up Sequences", icon: Repeat2, href: "#process" },
-    ],
-  },
-  {
-    title: "AI Marketing Hub",
-    items: [
-      { label: "AI Video & Social", icon: Clapperboard, href: "#ai-hub" },
-      { label: "AI Voice Agents", icon: PhoneCall, href: "#ai-hub" },
-      { label: "Predictive Lead Scoring", icon: Gauge, href: "#ai-hub" },
-    ],
-  },
-  {
-    title: "Insights & Admin",
-    items: [
-      { label: "Reports & Dashboards", icon: BarChart3, href: "#process" },
-      { label: "Integrations", icon: Plug, href: "#ai-hub" },
-      { label: "Security & RBAC", icon: Lock, href: "#security" },
-    ],
-  },
-];
-
 const NAV = [
-  { label: "Process", href: "#process" },
-  { label: "AI Hub", href: "#ai-hub" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Process", href: routes.process },
+  { label: "Pricing", href: routes.pricing },
+  { label: "Contact", href: routes.contact },
 ];
 
 export default function Header() {
@@ -93,7 +35,7 @@ export default function Header() {
     >
       <Container>
         <div className="flex h-[76px] items-center justify-between">
-          <a href="#top" aria-label="Xyra CRM home" className="flex items-center">
+          <AppLink href={routes.home} aria-label="Xyra CRM home" className="flex items-center">
             <img
               src={onLight ? "/logo-dark.png" : "/logo-white.png"}
               alt="Xyra CRM"
@@ -101,11 +43,9 @@ export default function Header() {
               width={120}
               height={32}
             />
-          </a>
+          </AppLink>
 
-          {/* Center nav */}
           <nav className="hidden items-center gap-9 lg:flex">
-            {/* Features dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setFeaturesOpen(true)}
@@ -137,20 +77,20 @@ export default function Header() {
                             {group.title}
                           </div>
                           <ul className="space-y-1">
-                            {group.items.map((it) => (
-                              <li key={it.label}>
-                                <a
-                                  href={it.href}
+                            {group.items.map((item) => (
+                              <li key={item.id}>
+                                <AppLink
+                                  href={item.href}
                                   onClick={() => setFeaturesOpen(false)}
                                   className="group flex items-center gap-2.5 rounded-[4px] px-2 py-2 transition-colors hover:bg-bg-soft"
                                 >
                                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[4px] border border-line bg-bg-soft text-ink-2 transition-colors group-hover:border-ink group-hover:text-ink">
-                                    <it.icon size={14} />
+                                    <item.icon size={14} />
                                   </span>
                                   <span className="text-[13.5px] font-medium text-ink-2 transition-colors group-hover:text-ink">
-                                    {it.label}
+                                    {item.label}
                                   </span>
-                                </a>
+                                </AppLink>
                               </li>
                             ))}
                           </ul>
@@ -161,13 +101,13 @@ export default function Header() {
                       <p className="text-[13px] text-ink-3">
                         One platform for prospecting, outreach, and AI marketing.
                       </p>
-                      <a
-                        href="#services"
+                      <AppLink
+                        href={routes.features}
                         onClick={() => setFeaturesOpen(false)}
                         className="font-ui text-[13px] font-semibold text-ink underline-offset-4 hover:underline"
                       >
                         Explore all features →
-                      </a>
+                      </AppLink>
                     </div>
                   </div>
                 </div>
@@ -175,7 +115,7 @@ export default function Header() {
             </div>
 
             {NAV.map((item) => (
-              <a
+              <AppLink
                 key={item.label}
                 href={item.href}
                 className={`font-ui text-[14px] font-medium tracking-wide transition-colors ${
@@ -183,7 +123,7 @@ export default function Header() {
                 }`}
               >
                 {item.label}
-              </a>
+              </AppLink>
             ))}
           </nav>
 
@@ -219,7 +159,6 @@ export default function Header() {
         </div>
       </Container>
 
-      {/* Mobile menu */}
       {open && (
         <div className="max-h-[80vh] overflow-y-auto border-t border-line bg-white lg:hidden">
           <Container className="py-5">
@@ -227,29 +166,29 @@ export default function Header() {
               Features
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-              {FEATURE_GROUPS.flatMap((g) => g.items).map((it) => (
-                <a
-                  key={it.label}
-                  href={it.href}
+              {FEATURE_GROUPS.flatMap((group) => group.items).map((item) => (
+                <AppLink
+                  key={item.id}
+                  href={item.href}
                   onClick={() => setOpen(false)}
                   className="flex items-center gap-2 rounded-[4px] px-2 py-2 text-[14px] text-ink-2 hover:bg-bg-soft"
                 >
-                  <it.icon size={15} className="text-ink-3" />
-                  {it.label}
-                </a>
+                  <item.icon size={15} className="text-ink-3" />
+                  {item.label}
+                </AppLink>
               ))}
             </div>
 
             <nav className="mt-4 flex flex-col gap-1 border-t border-line pt-4">
               {NAV.map((item) => (
-                <a
+                <AppLink
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="font-ui rounded-[3px] px-2 py-3 text-[15px] font-medium text-ink-2 hover:bg-bg-soft hover:text-ink"
                 >
                   {item.label}
-                </a>
+                </AppLink>
               ))}
             </nav>
 

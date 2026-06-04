@@ -1,4 +1,6 @@
 import { Check } from "lucide-react";
+import { AppLink } from "../lib/navigation";
+import { routes } from "../lib/routes";
 import { Container, Reveal, Eyebrow, Button } from "./primitives";
 
 const FREE = [
@@ -41,7 +43,6 @@ export default function Pricing() {
             </Reveal>
 
             <div className="mt-12 grid gap-6 lg:grid-cols-2">
-              {/* Free */}
               <Reveal className="flex flex-col border border-line bg-white p-9">
                 <h3 className="text-lg font-semibold text-ink">Free</h3>
                 <p className="mt-2 text-sm text-ink-3">
@@ -62,18 +63,17 @@ export default function Pricing() {
                   Get started free
                 </Button>
                 <ul className="mt-8 space-y-3.5">
-                  {FREE.map((f) => (
-                    <li key={f} className="flex items-start gap-3">
+                  {FREE.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-ink/20 text-ink">
                         <Check size={12} strokeWidth={2.5} />
                       </span>
-                      <span className="text-[15px] text-ink-2">{f}</span>
+                      <span className="text-[15px] text-ink-2">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </Reveal>
 
-              {/* Premium */}
               <Reveal
                 delay={100}
                 className="relative flex flex-col bg-night p-9"
@@ -92,7 +92,7 @@ export default function Pricing() {
                   <span className="text-white/55">/ month</span>
                 </div>
                 <p className="font-ui mt-3 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[12px] font-medium text-white/85">
-                  ✦ First month free — no card required
+                  First month free - no card required
                 </p>
                 <Button
                   href="https://xyra-crm.teknesisbrand.com/signup"
@@ -103,8 +103,8 @@ export default function Pricing() {
                   Start 1-month free trial
                 </Button>
                 <ul className="mt-8 space-y-3.5">
-                  {PREMIUM.map((f, i) => (
-                    <li key={f} className="flex items-start gap-3">
+                  {PREMIUM.map((feature, i) => (
+                    <li key={feature} className="flex items-start gap-3">
                       <span
                         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
                           i === 0
@@ -119,7 +119,7 @@ export default function Pricing() {
                           i === 0 ? "font-semibold text-white/60" : "text-white/90"
                         }`}
                       >
-                        {f}
+                        {feature}
                       </span>
                     </li>
                   ))}
@@ -135,12 +135,12 @@ export default function Pricing() {
                 <b className="text-ink">Pay-per-use AI credits</b> available for AI
                 Video Generation and Voice Agents - only pay for what you consume.
               </p>
-              <a
-                href="https://xyra-crm.teknesisbrand.com/signup"
+              <AppLink
+                href={routes.contact}
                 className="shrink-0 text-sm font-semibold text-ink underline-offset-4 hover:underline"
               >
                 Need SSO &amp; custom roles? Contact sales →
-              </a>
+              </AppLink>
             </Reveal>
           </div>
         </div>
