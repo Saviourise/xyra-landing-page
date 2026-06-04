@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, ArrowDown } from "lucide-react";
-import { Container, Reveal, Eyebrow } from "./primitives";
+import { Container, Eyebrow } from "./primitives";
 
 type Step = {
   n: string;
@@ -139,13 +139,13 @@ function StepContent({ step }: { step: Step }) {
         Step {step.n}
       </div>
       <span className="mt-3 block h-px w-10 bg-white/35" />
-      <h3 className="mt-6 text-[2.8rem] font-semibold leading-[1.02] tracking-[-0.02em] text-white sm:text-[3.4rem]">
+      <h3 className="mt-6 text-[2.35rem] font-semibold leading-[1.02] tracking-[-0.02em] text-white sm:text-[2.8rem] lg:text-[3.4rem]">
         {step.title}
       </h3>
-      <p className="mt-5 text-[17px] leading-relaxed text-white/75">
+      <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/75 sm:text-[16px] lg:text-[17px]">
         {step.desc}
       </p>
-      <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
+      <ul className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
         {step.points.map((p) => (
           <li key={p} className="flex items-center gap-2.5">
             <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/40 text-white">
@@ -213,16 +213,27 @@ export default function Process() {
   return (
     <section id="process" className="relative bg-night">
       {/* Tall track — desktop only */}
+      <div className="relative z-10 bg-night">
+        <Container className="pt-20 pb-8 sm:pt-24 sm:pb-10 lg:pt-28 lg:pb-12">
+          <div className="max-w-md">
+            <Eyebrow light>How it works</Eyebrow>
+            <h2 className="mt-6 text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.3rem] lg:text-[2.8rem]">
+              From a sentence to a signed deal.
+            </h2>
+          </div>
+        </Container>
+      </div>
+
       <div
         ref={sectionRef}
-        className="relative hidden bg-night lg:block"
+        className="relative bg-night"
         style={{ height: `${SCROLL_PAGES * 100}vh` }}
         aria-hidden
       />
 
       {/* Panel mirrors section top on enter, section bottom on exit */}
       <div
-        className="pointer-events-none fixed inset-x-0 z-20 hidden h-screen overflow-hidden bg-night lg:block"
+        className="pointer-events-none fixed inset-x-0 z-20 h-screen overflow-hidden bg-night"
         style={{
           top: panelTop,
           opacity: panelOpacity,
@@ -275,9 +286,9 @@ export default function Process() {
                 className="absolute inset-0"
                 style={{ transform: `translate3d(0, ${numY}vh, 0)` }}
               >
-                <Container className="flex h-full items-center">
+                <Container className="flex h-full items-start pt-24 sm:items-center sm:pt-0">
                   <span
-                    className={`font-display select-none text-[26vw] font-bold leading-none text-white/6 ${flip ? "ml-auto" : ""
+                    className={`font-display select-none text-[34vw] font-bold leading-none text-white/6 sm:text-[28vw] lg:text-[26vw] ${flip ? "sm:ml-auto" : ""
                       }`}
                   >
                     {step.n}
@@ -290,7 +301,7 @@ export default function Process() {
                 style={{ transform: `translate3d(0, ${textY}vh, 0)` }}
               >
                 <Container
-                  className={`flex h-full items-center ${flip ? "justify-end text-left" : ""
+                  className={`flex h-full items-end pb-20 sm:items-center sm:pb-0 ${flip ? "sm:justify-end sm:text-left" : ""
                     }`}
                 >
                   <StepContent step={step} />
@@ -324,36 +335,6 @@ export default function Process() {
       </div>
 
       {/* ── Mobile: stacked full-bleed step cards ── */}
-      <div className="bg-night lg:hidden">
-        <Container>
-          <div className="pt-20 pb-8">
-            <Reveal>
-              <Eyebrow light>How it works</Eyebrow>
-            </Reveal>
-            <Reveal delay={60}>
-              <h2 className="mt-8 text-[2rem] font-semibold leading-[1.1] text-white">
-                From a sentence to a signed deal.
-              </h2>
-            </Reveal>
-          </div>
-        </Container>
-
-        <div className="space-y-4 pb-16">
-          {STEPS.map((step) => (
-            <div key={step.n} className="relative min-h-[80vh] overflow-hidden">
-              <img
-                src={step.img}
-                alt={step.title}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-night/65" aria-hidden />
-              <Container className="relative flex min-h-[80vh] items-end py-12">
-                <StepContent step={step} />
-              </Container>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
