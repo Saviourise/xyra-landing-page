@@ -1,8 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { FAQS } from "../content/site";
-import { AppLink } from "../lib/navigation";
-import { routes } from "../lib/routes";
-import { Button, Container, Eyebrow, Reveal } from "./primitives";
+import { Container, Eyebrow, Reveal } from "./primitives";
 
 type FAQSectionProps = {
   title?: string;
@@ -55,8 +53,6 @@ export default function FAQSection({
                 </Reveal>
               ))}
             </div>
-
-
           </div>
         </div>
       </Container>

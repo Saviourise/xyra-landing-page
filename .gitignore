@@ -10,12 +10,11 @@
 
 # next.js
 /.next/
-/out/
+#/out/  # Uncomment or adjust if your "out" directory should not be tracked
 
 # production
 /build
 /dist
-dist
 /dist-ssr
 
 # misc

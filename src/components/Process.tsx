@@ -47,6 +47,7 @@ const LAST_INDEX = STEPS.length - 1;
 const STEP_FLOAT_MAX = STEPS.length;
 const LAST_STEP_HOLD_PAGES = 0.1;
 const EXIT_PAGES = 1;
+const COMPACT_SCROLL_FACTOR = 0.85;
 /** Slight extra hold on the last step, then one viewport for the slide-out to the next section. */
 const SCROLL_PAGES = STEP_FLOAT_MAX + LAST_STEP_HOLD_PAGES + EXIT_PAGES;
 
@@ -168,6 +169,7 @@ export default function Process() {
     visible: false,
   });
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [compactLayout, setCompactLayout] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -175,6 +177,13 @@ export default function Process() {
     const onChange = () => setReducedMotion(mq.matches);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    const updateLayout = () => setCompactLayout(window.innerWidth < 1024);
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
   useEffect(() => {
@@ -209,6 +218,9 @@ export default function Process() {
   const isExiting = panelTop < 0;
   const showScrollCue =
     stepFloat < 0.35 && panelTop === 0 && !isEntering && !isExiting;
+  const trackPages = compactLayout
+    ? STEP_FLOAT_MAX * COMPACT_SCROLL_FACTOR + LAST_STEP_HOLD_PAGES + EXIT_PAGES
+    : SCROLL_PAGES;
 
   return (
     <section id="process" className="relative bg-night">
@@ -227,7 +239,7 @@ export default function Process() {
       <div
         ref={sectionRef}
         className="relative bg-night"
-        style={{ height: `${SCROLL_PAGES * 100}vh` }}
+        style={{ height: `${trackPages * 100}vh` }}
         aria-hidden
       />
 
