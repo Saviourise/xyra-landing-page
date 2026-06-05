@@ -2,7 +2,7 @@ import PageHero from "../components/PageHero";
 import PageCTA from "../components/PageCTA";
 import StatStrip from "../components/StatStrip";
 import { Button, Container, Eyebrow, Reveal } from "../components/primitives";
-import { routes } from "../lib/routes";
+import { contactLinks } from "../lib/contact";
 
 export default function DemoPage() {
   return (
@@ -12,8 +12,8 @@ export default function DemoPage() {
         title="See the workflow from plain-language targeting to launched outreach."
         lead="A Xyra demo should show the operational path your team actually cares about: sourcing, verification, personalization, follow-up logic, reporting, and the admin controls around it."
         image="/images/cta-team.jpg"
-        primaryCta={{ label: "Contact sales", href: routes.contact }}
-        secondaryCta={{ label: "Start free trial", href: "https://xyra-crm.teknesisbrand.com/signup" }}
+        primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        secondaryCta={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
 
       <StatStrip
@@ -88,9 +88,9 @@ export default function DemoPage() {
               We will use that to route you into the right product conversation and make sure the demo is scoped correctly.
             </p>
             <div className="mt-8 flex flex-col gap-3">
-              <Button href={routes.contact}>Contact sales</Button>
-              <Button href="mailto:contact@teknesisbrand.com" variant="outline">
-                Email the team
+              <Button href={contactLinks.bookDemo}>Book a demo</Button>
+              <Button href={contactLinks.sendEmail} variant="outline">
+                Send an email
               </Button>
             </div>
           </Reveal>
@@ -102,8 +102,8 @@ export default function DemoPage() {
         eyebrow="Ready to talk it through?"
         title="If the workflow fits, we can tighten the demo around your current motion."
         lead="Use this as the entry point for a more tailored conversation with sales."
-        primary={{ label: "Contact sales", href: routes.contact }}
-        secondary={{ label: "Email the team", href: "mailto:contact@teknesisbrand.com" }}
+        primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        secondary={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
     </main>
   );

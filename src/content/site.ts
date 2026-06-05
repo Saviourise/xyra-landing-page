@@ -234,9 +234,9 @@ export const FOOTER_LINKS = [
 
 export const FAQS = [
   {
-    question: "How quickly can we get started?",
+    question: "How quickly can we book a demo?",
     answer:
-      "Most teams can start with the free plan immediately. If you want a more tailored rollout, we can shape onboarding around your sales motion and team size.",
+      "Most teams can book a demo right away. Send the request and we will get back to you within two business days to line up the right conversation.",
   },
   {
     question: "Do we need to change our current sales process?",
@@ -259,7 +259,7 @@ export const FAQS = [
       "The platform is built with encryption, permissions, and audit visibility in mind. Security and access control are core parts of the product, not add-ons.",
   },
   {
-    question: "Can we talk to someone before signing up?",
+    question: "Can we talk to someone before making a decision?",
     answer:
       "Yes. The contact and demo pages are there for teams that want to understand fit, pricing, or rollout details before they commit.",
   },

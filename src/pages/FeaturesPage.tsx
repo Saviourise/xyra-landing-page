@@ -13,8 +13,8 @@ export default function FeaturesPage() {
         title="One sales workspace, from prospect discovery to revenue visibility."
         lead="Xyra combines core CRM workflows with AI-powered outreach, content production, scoring, reporting, and admin controls in a single operating system for modern sales teams."
         image="/images/hero.jpg"
-        primaryCta={{ label: "Start free trial", href: "https://xyra-crm.teknesisbrand.com/signup" }}
-        secondaryCta={{ label: "Book a demo", href: routes.demo }}
+        primaryCta={{ label: "Book a demo", href: routes.demo }}
+        secondaryCta={{ label: "Send an email", href: routes.contact }}
       />
 
       <StatStrip

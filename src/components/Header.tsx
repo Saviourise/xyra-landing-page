@@ -128,21 +128,9 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-5 lg:flex">
-            <a
-              href="https://xyra-crm.teknesisbrand.com/login"
-              className={`font-ui text-[14px] font-semibold tracking-wide transition-colors ${
-                onLight ? "text-ink hover:text-brand" : "text-white hover:text-white/80"
-              }`}
-            >
-              Login
-            </a>
-            <Button
-              href="https://xyra-crm.teknesisbrand.com/signup"
-              variant={onLight ? "primary" : "onDark"}
-              className="px-6 py-2.5"
-            >
-              Start free trial
+          <div className="hidden items-center lg:flex">
+            <Button href={routes.demo} variant={onLight ? "primary" : "onDark"} className="px-6 py-2.5">
+              Book a demo
             </Button>
           </div>
 
@@ -194,15 +182,8 @@ export default function Header() {
             </nav>
 
             <div className="mt-3 flex flex-col gap-2 border-t border-line pt-4">
-              <Button
-                href="https://xyra-crm.teknesisbrand.com/login"
-                variant="outline"
-                full
-              >
-                Login
-              </Button>
-              <Button href="https://xyra-crm.teknesisbrand.com/signup" full>
-                Start free trial
+              <Button href={routes.demo} full>
+                Book a demo
               </Button>
             </div>
           </Container>

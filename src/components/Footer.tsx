@@ -26,14 +26,14 @@ export default function Footer() {
                 </span>
               </a>
               <a
-                href="mailto:contact@teknesisbrand.com"
+                href={routes.contact}
                 className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
                   <Mail size={15} />
                 </span>
                 <span className="text-[15px] underline underline-offset-4">
-                  Email the team
+                  Send an email
                 </span>
               </a>
             </div>
@@ -76,8 +76,8 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-col items-start gap-8">
-              <Button href={routes.contact} variant="onDark">
-                Get in touch
+              <Button href={routes.demo} variant="onDark">
+                Book a demo
               </Button>
             </div>
           </div>

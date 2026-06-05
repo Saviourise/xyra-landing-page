@@ -11,9 +11,9 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="Straightforward plans for teams growing into AI-driven outreach."
-        lead="Start with the CRM essentials for free, then move into AI prospecting, sequencing, reporting, and premium AI workflows when the team is ready to scale."
+        lead="Review the plans, then book a demo to see the right mix of prospecting, sequencing, reporting, and premium AI workflows for your team."
         image="/images/hero-2.jpg"
-        primaryCta={{ label: "Start free trial", href: "https://xyra-crm.teknesisbrand.com/signup" }}
+        primaryCta={{ label: "Book a demo", href: routes.demo }}
         secondaryCta={{ label: "Contact sales", href: routes.contact }}
       />
 

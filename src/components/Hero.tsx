@@ -21,7 +21,7 @@ export default function Hero() {
           <div className="flex min-h-screen flex-col justify-center pt-32 pb-16 lg:pr-12 lg:pt-40 lg:pb-24">
             <span className="font-ui mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-[12px] font-medium tracking-wide text-white/85 backdrop-blur-sm">
               <Sparkles size={14} className="text-white" />
-              1-month free trial on Premium - no card required
+              Live platform demos with a response within two business days
             </span>
 
             <h1 className="text-[2.9rem] font-semibold leading-[1.04] tracking-tight text-white sm:text-[3.6rem] lg:text-[4.1rem]">
@@ -37,14 +37,11 @@ export default function Hero() {
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Button
-                href="https://xyra-crm.teknesisbrand.com/signup"
-                variant="onDark"
-              >
-                Start 1-month free trial
-              </Button>
-              <Button href={routes.demo} variant="onDarkOutline">
+              <Button href={routes.demo} variant="onDark">
                 Book a demo
+              </Button>
+              <Button href={routes.contact} variant="onDarkOutline">
+                Send an email
               </Button>
             </div>
 

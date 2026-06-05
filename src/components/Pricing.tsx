@@ -37,8 +37,8 @@ export default function Pricing() {
                 Simple, transparent pricing.
               </h2>
               <p className="mt-5 max-w-md text-[16px] leading-relaxed text-ink-3">
-                Start free and upgrade when you're ready to put your outreach on
-                autopilot. No hidden fees.
+                Compare the options, then book a demo to see the setup that fits
+                your team. No hidden fees.
               </p>
             </Reveal>
 
@@ -55,12 +55,12 @@ export default function Pricing() {
                   <span className="text-ink-3">/ month</span>
                 </div>
                 <Button
-                  href="https://xyra-crm.teknesisbrand.com/signup"
+                  href={routes.demo}
                   variant="outline"
                   full
                   className="mt-8"
                 >
-                  Get started free
+                  Book a demo
                 </Button>
                 <ul className="mt-8 space-y-3.5">
                   {FREE.map((feature) => (
@@ -92,15 +92,15 @@ export default function Pricing() {
                   <span className="text-white/55">/ month</span>
                 </div>
                 <p className="font-ui mt-3 inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-[12px] font-medium text-white/85">
-                  First month free - no card required
+                  Demo-led rollout planning for growing teams
                 </p>
                 <Button
-                  href="https://xyra-crm.teknesisbrand.com/signup"
+                  href={routes.demo}
                   variant="onDark"
                   full
                   className="mt-6"
                 >
-                  Start 1-month free trial
+                  Book a demo
                 </Button>
                 <ul className="mt-8 space-y-3.5">
                   {PREMIUM.map((feature, i) => (

@@ -26,24 +26,21 @@ export default function FinalCTA() {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-white/65">
-              Join 500+ sales teams scaling their outreach with Xyra CRM - and
-              spend your time closing, not prospecting.
+              See how Xyra fits your workflow and spend your time closing, not
+              prospecting.
             </p>
           </Reveal>
           <Reveal delay={180}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Button
-                href="https://xyra-crm.teknesisbrand.com/signup"
-                variant="onDark"
-              >
-                Start your 1-month free trial
+              <Button href={routes.demo} variant="onDark">
+                Book a demo
               </Button>
               <Button href={routes.pricing} variant="onDarkOutline">
                 View pricing
               </Button>
             </div>
             <p className="mt-6 text-sm text-white/45">
-              Premium free for 30 days · No credit card required · Cancel anytime
+              We will get back to you within two business days.
             </p>
           </Reveal>
         </div>

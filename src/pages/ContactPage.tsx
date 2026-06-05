@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { Container, Eyebrow, Reveal } from "../components/primitives";
-import { routes } from "../lib/routes";
+import { contactLinks } from "../lib/contact";
 import PageCTA from "../components/PageCTA";
 
 export default function ContactPage() {
@@ -12,8 +12,8 @@ export default function ContactPage() {
         title="Talk to the team behind Xyra."
         lead="Whether you want a product walkthrough, a pricing conversation, or help evaluating fit for your team, we can point you to the right next step quickly."
         image="/images/hero-3.jpg"
-        primaryCta={{ label: "Book a demo", href: routes.demo }}
-        secondaryCta={{ label: "Start free trial", href: "https://xyra-crm.teknesisbrand.com/signup" }}
+        primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        secondaryCta={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
 
       <section className="bg-white py-24 md:py-32">
@@ -30,8 +30,8 @@ export default function ContactPage() {
               {
                 icon: Mail,
                 title: "Send a mail",
-                value: "Email the team",
-                href: "mailto:contact@teknesisbrand.com",
+                value: "Send an email",
+                href: contactLinks.sendEmail,
                 desc: "Best for procurement follow-up, partnership questions, and written product requests.",
               },
               {
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   Expect a direct conversation around prospecting volume, current tools, workflow bottlenecks, deliverability concerns, reporting needs, and rollout requirements.
                 </p>
                 <p className="text-[15px] leading-relaxed text-ink-3">
-                  If there is a fit, we can move straight into a tailored demo or trial recommendation without dragging you through a long generic sequence.
+                  If there is a fit, we can move straight into a tailored demo recommendation without dragging you through a long generic sequence.
                 </p>
               </div>
             </Reveal>
@@ -101,8 +101,8 @@ export default function ContactPage() {
         eyebrow="Prefer a live walkthrough?"
         title="Book a focused demo instead of sending details back and forth."
         lead="We can keep the conversation practical and map the best path forward quickly."
-        primary={{ label: "Book a demo", href: routes.demo }}
-        secondary={{ label: "Start free trial", href: "https://xyra-crm.teknesisbrand.com/signup" }}
+        primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        secondary={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
     </main>
   );
