@@ -87,7 +87,7 @@ export default function Pricing() {
                 </p>
                 <div className="mt-7 flex items-baseline gap-1">
                   <span className="text-5xl font-semibold tracking-tight text-white">
-                    ₦9,999
+                    ₦14,999
                   </span>
                   <span className="text-white/55">/ month</span>
                 </div>
