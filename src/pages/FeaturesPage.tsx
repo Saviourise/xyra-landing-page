@@ -14,7 +14,6 @@ export default function FeaturesPage() {
         lead="Xyra combines core CRM workflows with AI-powered outreach, content production, scoring, reporting, and admin controls in a single operating system for modern sales teams."
         image="/images/hero.jpg"
         primaryCta={{ label: "Book a demo", href: routes.demo }}
-        secondaryCta={{ label: "Send an email", href: routes.contact }}
       />
 
       <StatStrip

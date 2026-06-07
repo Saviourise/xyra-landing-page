@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import { FOOTER_LINKS } from "../content/site";
 import { AppLink } from "../lib/navigation";
 import { routes } from "../lib/routes";
@@ -23,17 +23,6 @@ export default function Footer() {
                 </span>
                 <span className="text-[15px] underline underline-offset-4">
                   Talk to sales
-                </span>
-              </a>
-              <a
-                href={routes.contact}
-                className="flex items-center gap-3 text-white/80 transition-colors hover:text-white"
-              >
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20">
-                  <Mail size={15} />
-                </span>
-                <span className="text-[15px] underline underline-offset-4">
-                  Send an email
                 </span>
               </a>
             </div>

@@ -13,7 +13,6 @@ export default function DemoPage() {
         lead="A Xyra demo should show the operational path your team actually cares about: sourcing, verification, personalization, follow-up logic, reporting, and the admin controls around it."
         image="/images/cta-team.jpg"
         primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
-        secondaryCta={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
 
       <StatStrip
@@ -89,9 +88,6 @@ export default function DemoPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3">
               <Button href={contactLinks.bookDemo}>Book a demo</Button>
-              <Button href={contactLinks.sendEmail} variant="outline">
-                Send an email
-              </Button>
             </div>
           </Reveal>
         </Container>
@@ -103,7 +99,6 @@ export default function DemoPage() {
         title="If the workflow fits, we can tighten the demo around your current motion."
         lead="Use this as the entry point for a more tailored conversation with sales."
         primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
-        secondary={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
     </main>
   );

@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { Container, Eyebrow, Reveal } from "../components/primitives";
 import { contactLinks } from "../lib/contact";
@@ -13,12 +13,11 @@ export default function ContactPage() {
         lead="Whether you want a product walkthrough, a pricing conversation, or help evaluating fit for your team, we can point you to the right next step quickly."
         image="/images/hero-3.jpg"
         primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
-        secondaryCta={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
 
       <section className="bg-white py-24 md:py-32">
         <Container>
-          <div className="grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
             {[
               {
                 icon: Phone,
@@ -26,13 +25,6 @@ export default function ContactPage() {
                 value: "Talk to sales",
                 href: "tel:+2348135503632",
                 desc: "Use this for direct sales conversations and urgent buying questions.",
-              },
-              {
-                icon: Mail,
-                title: "Send a mail",
-                value: "Send an email",
-                href: contactLinks.sendEmail,
-                desc: "Best for procurement follow-up, partnership questions, and written product requests.",
               },
               {
                 icon: MapPin,
@@ -102,7 +94,6 @@ export default function ContactPage() {
         title="Book a focused demo instead of sending details back and forth."
         lead="We can keep the conversation practical and map the best path forward quickly."
         primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
-        secondary={{ label: "Send an email", href: contactLinks.sendEmail }}
       />
     </main>
   );

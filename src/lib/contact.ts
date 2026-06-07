@@ -22,17 +22,6 @@ export const contactLinks = {
     "[Company Name]",
     "[Job Title]",
   ]),
-  sendEmail: createMailtoHref("Xyra CRM inquiry", [
-    "Hello Xyra Team,",
-    "I hope this email finds you well.",
-    "I recently came across Xyra and am interested in learning more about the platform and how it can support our business needs. I would appreciate more information about its features, capabilities, pricing, and the best way to evaluate whether it is the right fit for our team.",
-    "If helpful, I would be glad to share more context about our current workflow and requirements.",
-    "I look forward to hearing from you.",
-    "Kind regards,",
-    "[Your Name]",
-    "[Company Name]",
-    "[Job Title]",
-  ]),
 } as const;
 
 export { CONTACT_EMAIL };

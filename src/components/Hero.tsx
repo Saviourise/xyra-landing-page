@@ -40,9 +40,6 @@ export default function Hero() {
               <Button href={routes.demo} variant="onDark">
                 Book a demo
               </Button>
-              <Button href={routes.contact} variant="onDarkOutline">
-                Send an email
-              </Button>
             </div>
 
             <AppLink
