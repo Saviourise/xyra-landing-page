@@ -1,8 +1,8 @@
 import PageHero from "../components/PageHero";
 import PageCTA from "../components/PageCTA";
 import StatStrip from "../components/StatStrip";
+import DemoRequestForm from "../components/DemoRequestForm";
 import { Button, Container, Eyebrow, Reveal } from "../components/primitives";
-import { contactLinks } from "../lib/contact";
 
 export default function DemoPage() {
   return (
@@ -12,7 +12,7 @@ export default function DemoPage() {
         title="See the workflow from plain-language targeting to launched outreach."
         lead="A Xyra demo should show the operational path your team actually cares about: sourcing, verification, personalization, follow-up logic, reporting, and the admin controls around it."
         image="/images/cta-team.jpg"
-        primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        primaryCta={{ label: "Book a demo", href: "#demo-form" }}
       />
 
       <StatStrip
@@ -87,18 +87,20 @@ export default function DemoPage() {
               We will use that to route you into the right product conversation and make sure the demo is scoped correctly.
             </p>
             <div className="mt-8 flex flex-col gap-3">
-              <Button href={contactLinks.bookDemo}>Book a demo</Button>
+              <Button href="#demo-form">Book a demo</Button>
             </div>
           </Reveal>
         </Container>
       </section>
+
+      <DemoRequestForm />
 
       <PageCTA
         image="/images/cta-team.jpg"
         eyebrow="Ready to talk it through?"
         title="If the workflow fits, we can tighten the demo around your current motion."
         lead="Use this as the entry point for a more tailored conversation with sales."
-        primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        primary={{ label: "Book a demo", href: "#demo-form" }}
       />
     </main>
   );

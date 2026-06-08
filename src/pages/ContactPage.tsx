@@ -1,8 +1,8 @@
 import { MapPin, Phone } from "lucide-react";
 import PageHero from "../components/PageHero";
 import { Container, Eyebrow, Reveal } from "../components/primitives";
-import { contactLinks } from "../lib/contact";
 import PageCTA from "../components/PageCTA";
+import { routes } from "../lib/routes";
 
 export default function ContactPage() {
   return (
@@ -12,7 +12,7 @@ export default function ContactPage() {
         title="Talk to the team behind Xyra."
         lead="Whether you want a product walkthrough, a pricing conversation, or help evaluating fit for your team, we can point you to the right next step quickly."
         image="/images/hero-3.jpg"
-        primaryCta={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        primaryCta={{ label: "Book a demo", href: routes.demo }}
       />
 
       <section className="bg-white py-24 md:py-32">
@@ -93,7 +93,7 @@ export default function ContactPage() {
         eyebrow="Prefer a live walkthrough?"
         title="Book a focused demo instead of sending details back and forth."
         lead="We can keep the conversation practical and map the best path forward quickly."
-        primary={{ label: "Book a demo", href: contactLinks.bookDemo }}
+        primary={{ label: "Book a demo", href: routes.demo }}
       />
     </main>
   );
