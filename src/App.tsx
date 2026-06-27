@@ -12,6 +12,7 @@ import CaseStudiesPage from "./pages/CaseStudiesPage";
 import ContactPage from "./pages/ContactPage";
 import DemoPage from "./pages/DemoPage";
 import SecurityPage from "./pages/SecurityPage";
+import PrivacyPage from "./pages/PrivacyPage";
 
 function scrollToHash(hash: string) {
   const id = hash.replace(/^#/, "");
@@ -42,6 +43,8 @@ function resolvePage(pathname: string) {
       return <DemoPage />;
     case routes.security:
       return <SecurityPage />;
+    case routes.privacy:
+      return <PrivacyPage />;
     case routes.home:
     default:
       return <HomePage />;

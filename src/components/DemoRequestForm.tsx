@@ -7,6 +7,8 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import { AppLink } from "../lib/navigation";
+import { routes } from "../lib/routes";
 import { Container, Eyebrow, Reveal } from "./primitives";
 
 const GOOGLE_FORM_RESPONSE_URL =
@@ -591,7 +593,16 @@ export default function DemoRequestForm() {
                     )}
                   </button>
                   <p className="text-[13px] leading-relaxed text-ink-3">
-                    Required fields are marked with an asterisk.
+                    Required fields are marked with an asterisk. By submitting,
+                    you agree that Xyra may process the request as described in
+                    the{" "}
+                    <AppLink
+                      href={routes.privacy}
+                      className="font-semibold text-ink underline underline-offset-4 hover:text-brand"
+                    >
+                      Privacy Policy
+                    </AppLink>
+                    .
                   </p>
                 </div>
               </form>

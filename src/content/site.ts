@@ -229,6 +229,7 @@ export const FOOTER_LINKS = [
   { label: "Process", href: routes.process },
   { label: "FAQ", href: routes.faq },
   { label: "Security", href: routes.security },
+  { label: "Privacy", href: routes.privacy },
   { label: "Case studies", href: routes.caseStudies },
 ];
 

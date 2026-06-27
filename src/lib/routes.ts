@@ -8,6 +8,7 @@ export const routes = {
   contact: "/contact",
   demo: "/book-demo",
   security: "/security",
+  privacy: "/privacy",
   homeSection: (id: string) => `/#${id}`,
   featuresSection: (id: string) => `/features#${id}`,
 } as const;
